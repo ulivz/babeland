@@ -1,6 +1,6 @@
 {
-  "name": "@insx/template",
-  "description": "Default Template",
+  "name": "babel-shared",
+  "description": "Babel Shared Types And Utils",
   "version": "0.0.1",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -33,7 +33,17 @@
     "release": "quick-publish"
   },
   "dependencies": {
-    "tslib": "2.4.0"
+    "@babel/code-frame": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/generator": "^7.0.0",
+    "@babel/parser": "^7.0.0",
+    "@babel/traverse": "^7.0.0",
+    "@babel/types": "^7.0.0",
+    "@types/babel__code-frame": "^7.0.0",
+    "@types/babel__core": "^7.0.0",
+    "@types/babel__generator": "^7.0.0",
+    "@types/babel__parser": "^7.0.0",
+    "@types/babel__traverse": "^7.0.0"
   },
   "devDependencies": {
     "quick-publish": "0.6.0",
