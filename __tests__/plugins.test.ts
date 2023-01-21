@@ -146,7 +146,7 @@ pluginTester({
       title: 'this.globalState',
       code: 'this.globalState',
       output: 'this.$global.state;',
-    }, ,
+    },
     {
       title: 'this.globalGetters',
       code: 'this.globalGetters',

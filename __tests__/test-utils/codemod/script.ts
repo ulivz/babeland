@@ -42,12 +42,12 @@ const baseCodemodOptions: babel.TransformOptions = {
 export async function transform(
   input: string,
   plugins: types.BabelPlugin[] | Array<[types.BabelPlugin, object]> | babel.PluginItem[],
-): Promise<string | never> {
+): Promise<string | null | undefined | never> {
   const out = await babel.transformAsync(input, {
     ...baseCodemodOptions,
     plugins,
   });
-  return out.code;
+  return out?.code;
 }
 
 /**
@@ -56,10 +56,10 @@ export async function transform(
 export function transformSync(
   input: string,
   plugins: types.BabelPlugin[] | Array<[types.BabelPlugin, object]> | babel.PluginItem[],
-) {
+): string | null | undefined | never {
   const out = babel.transformSync(input, {
     ...baseCodemodOptions,
     plugins,
   });
-  return out.code;
+  return out?.code;
 }

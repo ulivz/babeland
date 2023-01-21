@@ -10,7 +10,7 @@ import { ScriptCodemod } from './codemod';
 export function renderBabelNode<T extends t.Node>(
   node: T | T[],
 ): string {
-  return ScriptCodemod.transformSync('a;', [
+  const result = ScriptCodemod.transformSync('a;', [
     ScriptCodemod.definePluginConfig(
       ScriptCodemod.definePlugin(() => ({
         visitor: {
@@ -26,6 +26,7 @@ export function renderBabelNode<T extends t.Node>(
       })),
     ),
   ]);
+  return result | undefined | null;
 }
 
 /**

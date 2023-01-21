@@ -1,26 +1,7 @@
 /**
  * Module dependencies
  */
-import { AxmlCodemod, ScriptCodemod } from '../script';
-
-describe('AxmlCodemod', () => {
-  it('transformSync', () => {
-    const { t } = AxmlCodemod;
-    const output = AxmlCodemod.transformSync('<view>App</view>', {
-      Node(node) {
-        if (t.isTag(node)) {
-          node.attribs.foo = 'bar';
-        }
-      },
-    });
-    expect(output).toBe('<view foo=\"bar\">App</view>');
-  });
-
-  it('transformSync - do not generate', () => {
-    const output = AxmlCodemod.transformSync('<view>{{ App }}</view>', {}, false);
-    expect(output).toBe(null);
-  });
-});
+import { ScriptCodemod } from '../index';
 
 describe('ScriptCodemod', () => {
   const plugins = [

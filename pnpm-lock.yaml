@@ -7,6 +7,7 @@ specifiers:
   '@babel/parser': ^7.0.0
   '@babel/traverse': ^7.0.0
   '@babel/types': ^7.0.0
+  '@types/babel-plugin-tester': ^9.0.5
   '@types/babel__code-frame': ^7.0.0
   '@types/babel__core': ^7.0.0
   '@types/babel__generator': ^7.0.0
@@ -41,6 +42,7 @@ dependencies:
   babel-plugin-tester: 10.1.0_@babel+core@7.18.10
 
 devDependencies:
+  '@types/babel-plugin-tester': 9.0.5
   '@types/jest': 28.1.7
   '@types/node': 18.7.6
   eslint: 7.32.0
@@ -722,7 +724,6 @@ packages:
     dependencies:
       '@types/babel__core': 7.1.19
       '@types/prettier': 2.7.0
-    dev: false
 
   /@types/babel__code-frame/7.0.3:
     resolution: {integrity: sha512-2TN6oiwtNjOezilFVl77zwdNPwQWaDBBCCWWxyo1ctiO3vAtd7H/aB/CBJdw9+kqq3+latD0SXoedIuHySSZWw==}

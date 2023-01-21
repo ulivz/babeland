@@ -1,1 +1,3 @@
-export * from './script';
+import * as ScriptCodemod from './script';
+
+export { ScriptCodemod };

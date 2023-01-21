@@ -32,6 +32,7 @@
   },
   "include": [
     "src",
+    "__tests__",
     "types",
     "*.d.ts"
   ],
