@@ -1,7 +1,7 @@
 <h1 align="center">babel-shared</h1>
 
 <p align="center">
-    Babel Shared Types And Utils.
+    Shared Types And Utilities for Babel - Make writing Babel plugins more fun
 </p>
 
 <p align="center">
