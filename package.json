@@ -33,6 +33,7 @@
     "release": "quick-publish"
   },
   "dependencies": {
+    "babel-plugin-tester": "^10.0.0",
     "@babel/code-frame": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
