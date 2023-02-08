@@ -12,7 +12,7 @@
 
 ## Motivation
 
-### Auto-inferring types for the Babel Plugin
+### Declare a type-hinted Babel Plugin
 
 If you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this: 
 
@@ -65,6 +65,10 @@ Wrapped exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
 ### `generate()`
 
 Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
+
+### `traverse()`
+
+Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
 
 ## Quick Start
 
