@@ -10,6 +10,29 @@
     <a href="https://circleci.com/gh/saojs/babel-shared"><img src="https://img.shields.io/circleci/project/saojs/babel-shared/master.svg?style=flat" alt="Build Status"></a> 
 </p>
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Motivation](#motivation)
+  - [Declare a type-hinted Babel Plugin](#declare-a-type-hinted-babel-plugin)
+  - [Why not `@babel/helper-plugin-utils`？](#why-not-babelhelper-plugin-utils)
+  - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
+- [Install](#install)
+- [API](#api)
+  - [`declarePlugin`](#declareplugin)
+  - [`t`](#t)
+  - [`parse()`](#parse)
+  - [`traverse()`](#traverse)
+  - [`generate()`](#generate)
+- [Internal Babel Plugins](#internal-babel-plugins)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## Motivation
 
 ### Declare a type-hinted Babel Plugin
@@ -124,22 +147,16 @@ pnpm i babel-shared -S # pnpm
 
 ### `traverse()`
 
-Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
+- **Description**: Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
 
 
 ### `generate()`
 
-Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
+- **Description**: Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
+
+## Internal Babel Plugins
 
 
-## Features
-
-- TypeScript by default.
-- Output both `cjs` and `esm`.
-- Unit test with [jest](https://facebook.github.io/jest/).
-- Format code with [eslint](https://eslint.org/docs).
-- Fix and format code on each commit.
-- Leverage [@insx/publish](https://github.com/insx/publish) for release flow.
 
 ## License
 
