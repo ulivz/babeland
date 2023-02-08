@@ -32,6 +32,7 @@
     - [Redirect imported module](#redirect-imported-module)
     - [Redirect imported specifier](#redirect-imported-specifier)
     - [Redirect both import specifier and imported module](#redirect-both-import-specifier-and-imported-module)
+    - [Redirect unknown imported module](#redirect-unknown-imported-module)
   - [babel-plugin-redirect-this-property](#babel-plugin-redirect-this-property)
 - [License](#license)
 
@@ -195,8 +196,28 @@ import { Foo } from 'a-module';
 import { Bar } from "a-module";
 ```
 
-
 #### Redirect both import specifier and imported module
+
+If you want to redirect the imported Module based on the Import Specifier, you can try it: 
+
+```ts
+`{
+  specifierMap: {
+    Foo: {
+      name: 'Foo',
+      targetImport: 'target',
+    },
+  },
+},`
+
+import { Foo } from "any-module"; // I don't known `any-module`.
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { Foo } from "target";
+```
+
+#### Redirect unknown imported module
 
 ```ts
 `{ 
@@ -216,6 +237,8 @@ import { app } from "before";
 
 import { App } from "after";
 ```
+
+
 
 ### babel-plugin-redirect-this-property
 
