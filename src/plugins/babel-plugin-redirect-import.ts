@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-import { types, t } from '../exports';
+import { declarePlugin, t } from '../exports';
 
 export type TargetImport = {
   name: string;
@@ -19,11 +19,11 @@ export interface IPluginOptions {
 }
 
 export interface IPluginState {
-  normalizedImportMap?: Record<string, TargetImport>;
-  normalizedSpecifierMap?: Record<string, TargetSpecifierImport>;
+  normalizedImportMap: Record<string, TargetImport>;
+  normalizedSpecifierMap: Record<string, TargetSpecifierImport>;
 }
 
-export default types.definePlugin<IPluginOptions, IPluginState>(babel => ({
+export default declarePlugin<IPluginOptions, IPluginState>(() => ({
   name: 'babel-plugin-redirect-import',
   /**
      * Normalize options.
@@ -109,6 +109,6 @@ export function findImportSpecifier(
   specifierName: string,
 ): t.ImportSpecifier {
   return specifiers.find((s): s is t.ImportSpecifier => t.isImportSpecifier(s)
-      && t.isIdentifier(s.imported)
-      && s.imported.name === specifierName);
+    && t.isIdentifier(s.imported)
+    && s.imported.name === specifierName);
 }

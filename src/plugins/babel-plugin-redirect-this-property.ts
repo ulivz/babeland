@@ -2,7 +2,14 @@
  * Module dependencies
  */
 import { Node } from '@babel/core';
-import { types, helpers, t, NodePath } from '../exports';
+import {
+  declarePlugin,
+  t,
+  NodePath,
+  getHighlightCodeString,
+  HighlightCodeError,
+  buildMemberExpressionByIdentifierHierarchy,
+} from '../exports';
 
 export interface IPluginOptions {
   /**
@@ -26,7 +33,7 @@ export interface IPluginOptions {
 /**
  * Expose `babel-plugin-redirect-this-property`
  */
-export default types.definePlugin<IPluginOptions>(babel => ({
+export default declarePlugin<IPluginOptions>(babel => ({
   name: 'babel-plugin-redirect-this-property',
   visitor: {
     VariableDeclaration(path, state) {
@@ -34,80 +41,97 @@ export default types.definePlugin<IPluginOptions>(babel => ({
         let thisAlias: string;
 
         /**
-           * HANDLE:
-           *
-           *   const { foo, bar } = this;
-           *   foo('xxx');
-           *   bar('xxx');
-           *
-           * AND:
-           *
-           *   `foo` should be redirected to `this.a.b` (declared in `identifierMap`)
-           *   `bar` should remain unchanged
-           */
-        let shouldHandleDeclaration: boolean = t.isThisExpression(declaration.init);
+         * HANDLE:
+         *
+         *   const { foo, bar } = this;
+         *   foo('xxx');
+         *   bar('xxx');
+         *
+         * AND:
+         *
+         *   `foo` should be redirected to `this.a.b` (declared in `identifierMap`)
+         *   `bar` should remain unchanged
+         */
+        let shouldHandleDeclaration: boolean = t.isThisExpression(
+          declaration.init,
+        );
         /**
-           * HANDLE:
-           *
-           *   const ctx = this;
-           *   const { foo, bar } = ctx;
-           *   foo('xxx');
-           *   bar('xxx');
-           *
-           * AND:
-           *
-           *   `foo` should be redirected to `this.a.b` (declared in `identifierMap`)
-           *   `bar` should remain unchanged
-           */
+         * HANDLE:
+         *
+         *   const ctx = this;
+         *   const { foo, bar } = ctx;
+         *   foo('xxx');
+         *   bar('xxx');
+         *
+         * AND:
+         *
+         *   `foo` should be redirected to `this.a.b` (declared in `identifierMap`)
+         *   `bar` should remain unchanged
+         */
         if (!shouldHandleDeclaration) {
           if (t.isIdentifier(declaration.init)) {
-            shouldHandleDeclaration = isBindingToThis(path, declaration.init.name);
+            shouldHandleDeclaration = isBindingToThis(
+              path,
+              declaration.init.name,
+            );
             thisAlias = declaration.init.name;
           }
         }
         /**
-           * const xxx = this;
-           */
+         * const xxx = this;
+         */
         if (shouldHandleDeclaration) {
           /**
-             * const { foo, bar } = xxx;
-             */
+           * const { foo, bar } = xxx;
+           */
           if (t.isObjectPattern(declaration.id)) {
             const removedPropertiesIndexs: number[] = [];
             declaration.id.properties.forEach((property, index) => {
               if (t.isObjectProperty(property)) {
-                if (t.isIdentifier(property.key) && t.isIdentifier(property.value)) {
+                if (
+                  t.isIdentifier(property.key)
+                  && t.isIdentifier(property.value)
+                ) {
                   /**
-                     * Handle dangerous identifiers
-                     */
+                   * Handle dangerous identifiers
+                   */
                   handleDangerousIdentifiers(
                     state.opts.dangerousIdentifiers,
                     property.key,
                     state.file.code,
                   );
                   /**
-                     * Redirect with identifierMap
-                     */
-                  const identifierHierarchy = state.opts.identifierMap[property.key.name];
+                   * Redirect with identifierMap
+                   */
+                  const identifierHierarchy
+                    = state.opts.identifierMap[property.key.name];
                   if (identifierHierarchy) {
                     /**
-                       * WARNING LOG when met: `const { dispatchGlobal: d } = this;`
-                       */
+                     * WARNING LOG when met: `const { dispatchGlobal: d } = this;`
+                     */
                     if (property.key.name !== property.value.name) {
-                      console.log(helpers.getHighlightCodeString(state.file.code, property.loc, 'found deconstruct'));
+                      console.log(
+                        getHighlightCodeString(
+                          state.file.code,
+                          property.loc,
+                          'found deconstruct',
+                        ),
+                      );
                     }
                     /**
-                       * Record properties to be removed.
-                       */
+                     * Record properties to be removed.
+                     */
                     removedPropertiesIndexs.push(index);
                     /**
-                       * INSERT: `const dispatchGlobal = this.$global.dispatch`;
-                       */
+                     * INSERT: `const dispatchGlobal = this.$global.dispatch`;
+                     */
                     path.insertAfter(
                       t.variableDeclaration('const', [
                         t.variableDeclarator(
                           t.identifier(property.value.name),
-                          getThisMemberExpressionByIdentifierHierarchy(identifierHierarchy),
+                          getThisMemberExpressionByIdentifierHierarchy(
+                            identifierHierarchy,
+                          ),
                         ),
                       ]),
                     );
@@ -132,29 +156,31 @@ export default types.definePlugin<IPluginOptions>(babel => ({
       let thisAlias: string;
 
       /**
-         * HANDLE:
-         *
-         *   this.foo('xx')
-         *   this.bar('xx')
-         *
-         * AND:
-         *
-         *   `this.foo` should be redirected to `this.a.b` (declared in `identifierMap`)
-         *   `this.bar` should remain unchanged
-         */
-      let shouldHandleExpression: boolean = t.isThisExpression(path.node.object); // => this.bar
+       * HANDLE:
+       *
+       *   this.foo('xx')
+       *   this.bar('xx')
+       *
+       * AND:
+       *
+       *   `this.foo` should be redirected to `this.a.b` (declared in `identifierMap`)
+       *   `this.bar` should remain unchanged
+       */
+      let shouldHandleExpression: boolean = t.isThisExpression(
+        path.node.object,
+      ); // => this.bar
       /**
-         * HANDLE:
-         *
-         *   const ctx = this;
-         *   ctx.foo('xx')
-         *   ctx.bar('xx')
-         *
-         * AND:
-         *
-         *   `ctx.foo` should be redirected to `this.a.b` (declared in `identifierMap`)
-         *   `ctx.bar` should remain unchanged
-         */
+       * HANDLE:
+       *
+       *   const ctx = this;
+       *   ctx.foo('xx')
+       *   ctx.bar('xx')
+       *
+       * AND:
+       *
+       *   `ctx.foo` should be redirected to `this.a.b` (declared in `identifierMap`)
+       *   `ctx.bar` should remain unchanged
+       */
       if (!shouldHandleExpression) {
         if (t.isIdentifier(path.node.object)) {
           shouldHandleExpression = isBindingToThis(path, path.node.object.name);
@@ -164,20 +190,24 @@ export default types.definePlugin<IPluginOptions>(babel => ({
 
       if (shouldHandleExpression) {
         /**
-           * Handle dangerous identifiers
-           */
+         * Handle dangerous identifiers
+         */
         handleDangerousIdentifiers(
           state.opts.dangerousIdentifiers,
           path.node.property,
           state.file.code,
         );
         /**
-           * Redirect with identifierMap
-           */
-        const identifierHierarchy = state.opts.identifierMap[path.node.property.name];
+         * Redirect with identifierMap
+         */
+        const identifierHierarchy
+          = state.opts.identifierMap[path.node.property.name];
         if (identifierHierarchy) {
           path.replaceWith(
-            getThisMemberExpressionByIdentifierHierarchy(identifierHierarchy, thisAlias),
+            getThisMemberExpressionByIdentifierHierarchy(
+              identifierHierarchy,
+              thisAlias,
+            ),
           );
         }
       }
@@ -194,7 +224,11 @@ function handleDangerousIdentifiers(
   source: string,
 ) {
   if (dangerousIdentifiers && dangerousIdentifiers.includes(identifier.name)) {
-    throw new helpers.HighlightCodeError(source, identifier.loc, 'Incompatible identifier');
+    throw new HighlightCodeError(
+      source,
+      identifier.loc,
+      'Incompatible identifier',
+    );
   }
 }
 
@@ -206,9 +240,11 @@ function handleDangerousIdentifiers(
  */
 function isBindingToThis<T extends Node>(path: NodePath<T>, local: string) {
   const binding = path.scope.getBinding(local);
-  return binding
+  return (
+    binding
     && t.isVariableDeclarator(binding.path.node)
-    && t.isThisExpression(binding.path.node.init);
+    && t.isThisExpression(binding.path.node.init)
+  );
 }
 
 /**
@@ -241,9 +277,8 @@ function getThisMemberExpressionByIdentifierHierarchy(
   hierarchy: string | string[],
   thisAlias?: string,
 ) {
-  const normalizedHierarchy = typeof hierarchy === 'string'
-    ? hierarchy.split('.')
-    : hierarchy;
+  const normalizedHierarchy
+    = typeof hierarchy === 'string' ? hierarchy.split('.') : hierarchy;
 
   if (normalizedHierarchy.length < 1) {
     throw new Error(`Invalid identifier hierarchy: ${hierarchy}`);
@@ -255,11 +290,8 @@ function getThisMemberExpressionByIdentifierHierarchy(
   ];
 
   if (nodes.length === 2) {
-    return t.memberExpression(
-      nodes[0],
-      nodes[1],
-    );
+    return t.memberExpression(nodes[0], nodes[1]);
   }
 
-  return helpers.buildMemberExpressionByIdentifierHierarchy(nodes);
+  return buildMemberExpressionByIdentifierHierarchy(nodes);
 }

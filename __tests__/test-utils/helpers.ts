@@ -11,8 +11,8 @@ export function renderBabelNode<T extends t.Node>(
   node: T | T[],
 ): string {
   const result = ScriptCodemod.transformSync('a;', [
-    ScriptCodemod.definePluginConfig(
-      ScriptCodemod.definePlugin(() => ({
+    ScriptCodemod.declarePluginConfig(
+      ScriptCodemod.declarePlugin(() => ({
         visitor: {
           ExpressionStatement(path) {
             Array.isArray(node)

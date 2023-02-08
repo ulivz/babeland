@@ -2,12 +2,14 @@
   "compilerOptions": {
     "strict": true,
     "strictFunctionTypes": true,
+    "strictNullChecks": false,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowJs": false,
+    "skipLibCheck": true,
     "alwaysStrict": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -32,8 +34,6 @@
   },
   "include": [
     "src",
-    "__tests__",
-    "types",
     "*.d.ts"
   ],
   "exclude": [

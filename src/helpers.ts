@@ -3,6 +3,26 @@
  */
 import * as t from '@babel/types';
 import { codeFrameColumns, SourceLocation, BabelCodeFrameOptions } from '@babel/code-frame';
+import { Visitor } from '@babel/traverse';
+import { BabelPlugin, PluginOptions } from './types';
+
+export function declarePlugin<
+  T extends PluginOptions = object,
+  U extends object = object
+>(fn: BabelPlugin<T, U>): typeof fn {
+  return fn;
+}
+
+export function defineVisitor<T extends object = object>(visitor: Visitor<T>): Visitor<T> {
+  return visitor;
+}
+
+export function declarePluginConfig<T extends PluginOptions = object>(
+  plugin: BabelPlugin<T>,
+  pluginOptions?: T,
+): [BabelPlugin<T>, T] {
+  return [plugin, pluginOptions || {} as T];
+}
 
 /**
  * Expose `getHighlightCodeString`
@@ -67,11 +87,13 @@ export function buildMemberExpressionByIdentifierHierarchy(
   for (let i = 1; i <= normalizedHierarchy.length - 1; i++) {
     const left = normalizedHierarchy[i - 1];
     const right = normalizedHierarchy[i];
-    currentMemberExpression = t.memberExpression(
-      i === 1 ? left : currentMemberExpression,
-      right,
-    );
+    if (left && right) {
+      currentMemberExpression = t.memberExpression(
+        i === 1 ? left : currentMemberExpression!,
+        right,
+      );
+    }
   }
 
-  return currentMemberExpression;
+  return currentMemberExpression!;
 }

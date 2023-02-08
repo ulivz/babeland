@@ -5,9 +5,9 @@ import * as babel from '@babel/core';
 import { BabelPlugin } from './types';
 
 /**
-  * TODO how can we make that babel does not format code
+  * FIXME: how can we make that babel does not format code
   */
-const DEGAUL_TRANSFORM_OPTIONS: babel.TransformOptions = {
+const DEFAULT_TRANSFORM_OPTIONS: babel.TransformOptions = {
   /**
     * do not enable config file
     */
@@ -36,12 +36,12 @@ const DEGAUL_TRANSFORM_OPTIONS: babel.TransformOptions = {
 export async function transform(
   input: string,
   plugins: BabelPlugin[] | Array<[BabelPlugin, object]> | babel.PluginItem[],
-): Promise<string | never> {
+): Promise<string | null | undefined> {
   const out = await babel.transformAsync(input, {
-    ...DEGAUL_TRANSFORM_OPTIONS,
+    ...DEFAULT_TRANSFORM_OPTIONS,
     plugins,
   });
-  return out.code;
+  return out?.code;
 }
 
 /**
@@ -50,10 +50,10 @@ export async function transform(
 export function transformSync(
   input: string,
   plugins: BabelPlugin[] | Array<[BabelPlugin, object]> | babel.PluginItem[],
-): string {
+): string | null | undefined {
   const out = babel.transformSync(input, {
-    ...DEGAUL_TRANSFORM_OPTIONS,
+    ...DEFAULT_TRANSFORM_OPTIONS,
     plugins,
   });
-  return out.code;
+  return out?.code;
 }
