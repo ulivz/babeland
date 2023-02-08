@@ -165,90 +165,121 @@ pnpm i babel-shared -S # pnpm
 
 #### Redirect imported module
 
-```ts
-`{ 
-  importMap: { 
-    'Foo': 'Bar'
-  }
-}` // Plugin Options
+- **Options**:
 
-import { Component } from 'before';
+  ```ts
+  `{ 
+    importMap: { 
+      'Foo': 'Bar'
+    }
+  }` // Plugin Options
+  ```
 
-      ↓ ↓ ↓ ↓ ↓ ↓
+- **Example**:
 
-import { Component } from "after";
-```
+  ```ts
+  import { Component } from 'before';
+
+        ↓ ↓ ↓ ↓ ↓ ↓
+
+  import { Component } from "after";
+  ```
 
 #### Redirect imported specifier
 
-```ts
-`{ 
-  specifierMap: {
-    Foo: 'Bar',
-  },
-}` // Plugin Options
+- **Options**:
 
-import { Foo } from 'a-module';
+  ```ts
+  `{ 
+    specifierMap: {
+      Foo: 'Bar',
+    },
+  }` // Plugin Options
+  ```
 
-      ↓ ↓ ↓ ↓ ↓ ↓
+- **Example**:
 
-import { Bar } from "a-module";
-```
+  ```ts
+  import { Foo } from 'a-module';
+
+        ↓ ↓ ↓ ↓ ↓ ↓
+
+  import { Bar } from "a-module";
+  ```
 
 #### Redirect both import specifier and imported module
 
-```ts
-`{
-  specifierMap: {
-    Foo: {
-      name: 'Foo',
-      targetImport: 'target',
+- **Options**:
+
+  ```ts
+  `{
+    specifierMap: {
+      Foo: {
+        name: 'Foo',
+        targetImport: 'target',
+      },
     },
-  },
-},` // Plugin Options
+  },` // Plugin Options
 
-import { Foo } from "any-module"; // I don't known `any-module`.
+  ```
 
-      ↓ ↓ ↓ ↓ ↓ ↓
+- **Example**:
 
-import { Foo } from "target";
-```
+  ```ts
+  import { Foo } from "any-module"; // I don't known `any-module`.
+
+        ↓ ↓ ↓ ↓ ↓ ↓
+
+  import { Foo } from "target";
+  ```
 
 #### Redirect unknown imported module
 
 If you want to redirect the imported Module based on the Import Specifier, you can try it: 
 
-```ts
-`{ 
-  importMap: { 
-    'before': {
-      name: 'after',
-      specifierMap: {
-        app: 'App',
+- **Options**:
+
+  ```ts
+  `{ 
+    importMap: { 
+      'before': {
+        name: 'after',
+        specifierMap: {
+          app: 'App',
+        },
       },
-    },
-  } 
-}` // Plugin Options
+    } 
+  }` // Plugin Options
 
-import { app } from "before";
+  ```
 
-      ↓ ↓ ↓ ↓ ↓ ↓
+- **Example**:
 
-import { App } from "after";
-```
+  ```ts
+  import { app } from "before";
+
+        ↓ ↓ ↓ ↓ ↓ ↓
+
+  import { App } from "after";
+  ```
 
 ### babel-plugin-redirect-this-property
 
 #### Specifier identifiers
 
+- **Options**:
 ```ts
-`{
+{
   identifierMap: {
     foo: 'bar',
     baz: 'a.b'
   }
-}`  // Plugin Options
+}
+```
 
+- **Example**:
+
+```ts
 this.foo;
 this.baz;
 
