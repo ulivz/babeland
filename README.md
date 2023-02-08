@@ -168,11 +168,11 @@ pnpm i babel-shared -S # pnpm
 - **Options**:
 
   ```ts
-  `{ 
+  { 
     importMap: { 
       'Foo': 'Bar'
     }
-  }` // Plugin Options
+  }
   ```
 
 - **Example**:
@@ -190,11 +190,11 @@ pnpm i babel-shared -S # pnpm
 - **Options**:
 
   ```ts
-  `{ 
+  { 
     specifierMap: {
       Foo: 'Bar',
     },
-  }` // Plugin Options
+  }
   ```
 
 - **Example**:
@@ -212,14 +212,14 @@ pnpm i babel-shared -S # pnpm
 - **Options**:
 
   ```ts
-  `{
+  {
     specifierMap: {
       Foo: {
         name: 'Foo',
         targetImport: 'target',
       },
     },
-  },` // Plugin Options
+  }
 
   ```
 
@@ -268,26 +268,27 @@ If you want to redirect the imported Module based on the Import Specifier, you c
 #### Specifier identifiers
 
 - **Options**:
-```ts
-{
-  identifierMap: {
-    foo: 'bar',
-    baz: 'a.b'
+  
+  ```ts
+  {
+    identifierMap: {
+      foo: 'bar',
+      baz: 'a.b'
+    }
   }
-}
-```
+  ```
 
 - **Example**:
 
-```ts
-this.foo;
-this.baz;
+  ```ts
+  this.foo;
+  this.baz;
 
-      ↓ ↓ ↓ ↓ ↓ ↓
+        ↓ ↓ ↓ ↓ ↓ ↓
 
-this.bar;
-this.a.b;
-```
+  this.bar;
+  this.a.b;
+  ```
 
 ## License
 
