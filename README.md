@@ -1,7 +1,7 @@
 <h1 align="center">babel-shared</h1>
 
 <p align="center">
-    Shared Stable Types And Utilities for Babel
+    Shared stable types and utilities for babel
 </p>
 
 <p align="center">
