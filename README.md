@@ -14,7 +14,7 @@
 
 ### Declare a type-hinted Babel Plugin
 
-If you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this: 
+If you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this:
 
 ```ts
 module.exports = (babel) => {
@@ -52,6 +52,29 @@ export function declarePlugin((babel) => {
 });
 ```
 
+## Quick Start
+
+Install this package:
+
+```bash
+npm i babel-shared -S  # npm
+pnpm i babel-shared -S # pnpm
+```
+
+Write a babel plugin:
+
+```ts
+import { defineBabelPlugin } from 'babel-shared';
+
+export function declarePlugin((babel) => {
+  return {
+    visitor: {
+      // ...
+    },
+  };
+});
+```
+
 ## API
 
 ### `t`
@@ -69,23 +92,6 @@ Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-ge
 ### `traverse()`
 
 Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
-
-## Quick Start
-
-1. Click "Use this template" at this repository.
-2. Rename all `babel-shared` to your package name.
-3. Commands:
-
-```bash
-npm run bootstrap   # install dependencies
-npm run dev         # development both cjs and esm output
-npm run build       # build both cjs and esm
-npm run lint        # lint code
-npm run lint:fix    # fix all code lint errors
-npm run test        # run all tests
-npm run cov         # run all tests and generate coverage report
-npm run release     # release this package
-```
 
 ## Features
 
