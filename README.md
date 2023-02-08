@@ -14,7 +14,7 @@
 
 ### Declare a type-hinted Babel Plugin
 
-If you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this:
+Suppose you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this:
 
 ```ts
 module.exports = (babel) => {
@@ -31,7 +31,7 @@ module.exports = (babel) => {
 };
 ```
 
-you'll find that all context objects(`babel`, `path` and `node`) have not types, and you can only move to the next step by debugging it, hherefore, this will cause a lot of trouble to coding.
+you'll find that all context objects(`babel`, `path` and `node`) have not types, and you can only move to the next step by debugging it, therefore, this will cause a lot of trouble to coding.
 
 With `babel-shared`, you can have full type hints:
 
@@ -51,6 +51,13 @@ export function declarePlugin((babel) => {
   };
 });
 ```
+
+### Why not `@babel/helper-plugin-utils`？
+
+[@babel/helper-plugin-utils](https://babeljs.io/docs/en/babel-helper-plugin-utils) is aims to provide clear error messages if a plugin is run on a version of Babel that doesn't have the APIs that the plugin is trying to use. while you can only get its type by installing [@types/babel__helper-plugin-utils](https://www.npmjs.com/package/@types/babel__helper-plugin-utils), and this package has not been updated for three years.
+
+With `babel-shared`, you don't need care the type obsolescence problem.
+
 
 ## Quick Start
 
