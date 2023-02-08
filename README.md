@@ -59,30 +59,41 @@ export function declarePlugin((babel) => {
 With `babel-shared`, you don't need care the type obsolescence problem.
 
 
-## Quick Start
-
-Install this package:
+## Install
 
 ```bash
 npm i babel-shared -S  # npm
 pnpm i babel-shared -S # pnpm
 ```
 
-Write a babel plugin:
-
-```ts
-import { defineBabelPlugin } from 'babel-shared';
-
-export function declarePlugin((babel) => {
-  return {
-    visitor: {
-      // ...
-    },
-  };
-});
-```
-
 ## API
+
+### `declarePlugin`
+
+A helper function for declare a babel plugin:
+
+- **Type**:
+  
+  ```ts
+  function declarePlugin<
+    T extends PluginOptions = object,
+    U extends object = object
+  >(fn: BabelPlugin<T, U>): typeof fn;
+  ```
+
+- **Example**:
+    
+  ```ts
+  import { declarePlugin } from 'babel-shared';
+  
+  export function declarePlugin((babel) => {
+    return {
+      visitor: {
+        // ...
+      },
+    };
+  });
+  ```
 
 ### `t`
 
