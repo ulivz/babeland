@@ -29,6 +29,8 @@
   - [`generate()`](#generate)
 - [Internal Plugins](#internal-plugins)
   - [babel-plugin-redirect-import](#babel-plugin-redirect-import)
+    - [Only redirect imported module](#only-redirect-imported-module)
+    - [Redirect both import specifier and imported module](#redirect-both-import-specifier-and-imported-module)
   - [babel-plugin-redirect-this-property](#babel-plugin-redirect-this-property)
 - [License](#license)
 
@@ -160,6 +162,8 @@ pnpm i babel-shared -S # pnpm
 
 ### babel-plugin-redirect-import
 
+#### Only redirect imported module
+
 ```ts
 `{ importMap: { '@ulivz/before': '@ulivz/after' } }`
 
@@ -169,6 +173,8 @@ import { Component } from '@ulivz/before';
 
 import { Component } from "@ulivz/after";
 ```
+
+#### Redirect both import specifier and imported module
 
 ```ts
 `{ 
@@ -186,7 +192,7 @@ import { app } from "@ulivz/before";
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { App } from "@ulivz/before";
+import { App } from "@ulivz/after";
 ```
 
 ### babel-plugin-redirect-this-property
