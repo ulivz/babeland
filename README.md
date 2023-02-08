@@ -29,7 +29,8 @@
   - [`generate()`](#generate)
 - [Internal Plugins](#internal-plugins)
   - [babel-plugin-redirect-import](#babel-plugin-redirect-import)
-    - [Only redirect imported module](#only-redirect-imported-module)
+    - [Redirect imported module](#redirect-imported-module)
+    - [Redirect imported specifier](#redirect-imported-specifier)
     - [Redirect both import specifier and imported module](#redirect-both-import-specifier-and-imported-module)
   - [babel-plugin-redirect-this-property](#babel-plugin-redirect-this-property)
 - [License](#license)
@@ -162,10 +163,14 @@ pnpm i babel-shared -S # pnpm
 
 ### babel-plugin-redirect-import
 
-#### Only redirect imported module
+#### Redirect imported module
 
 ```ts
-`{ importMap: { 'before': 'after' } }`
+`{ 
+  importMap: { 
+    'Foo': 'Bar'
+  }
+}`
 
 import { Component } from 'before';
 
@@ -173,6 +178,23 @@ import { Component } from 'before';
 
 import { Component } from "after";
 ```
+
+#### Redirect imported specifier
+
+```ts
+`{ 
+  specifierMap: {
+    Foo: 'Bar',
+  },
+}`
+
+import { Foo } from 'a-module';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { Bar } from "a-module";
+```
+
 
 #### Redirect both import specifier and imported module
 
