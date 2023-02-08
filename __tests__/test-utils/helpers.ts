@@ -38,7 +38,7 @@ export function stripAnsi(str: string) {
 }
 
 /**
- * Snaphot a error
+ * Snapshot a error
  */
 export function snapshotError(error: Error) {
   expect(stripAnsi(error.message)).toMatchSnapshot();
