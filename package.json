@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "bootstrap": "pnpm i --prefer-offline",
+    "clean": "rm -rf cjs esm",
     "docs": "doctoc --title '## Table of Contents' README.md",
     "dev": "run-p dev:cjs dev:esm",
     "build": "run-p build:cjs build:esm",
