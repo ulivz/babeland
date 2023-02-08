@@ -134,7 +134,7 @@ pnpm i babel-shared -S # pnpm
 
 ### `t`
 
-- **Description**: Wrapped exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
+- **Description**: exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
 - **Example**:
   
   ```ts
@@ -165,13 +165,13 @@ pnpm i babel-shared -S # pnpm
 #### Only redirect imported module
 
 ```ts
-`{ importMap: { '@ulivz/before': '@ulivz/after' } }`
+`{ importMap: { 'before': 'after' } }`
 
-import { Component } from '@ulivz/before';
+import { Component } from 'before';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { Component } from "@ulivz/after";
+import { Component } from "after";
 ```
 
 #### Redirect both import specifier and imported module
@@ -179,8 +179,8 @@ import { Component } from "@ulivz/after";
 ```ts
 `{ 
   importMap: { 
-    '@ulivz/before': {
-      name: '@ulivz/after',
+    'before': {
+      name: 'after',
       specifierMap: {
         app: 'App',
       },
@@ -188,11 +188,11 @@ import { Component } from "@ulivz/after";
   } 
 }`
 
-import { app } from "@ulivz/before";
+import { app } from "before";
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { App } from "@ulivz/after";
+import { App } from "after";
 ```
 
 ### babel-plugin-redirect-this-property
