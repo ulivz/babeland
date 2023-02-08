@@ -2,7 +2,7 @@
  * Module dependencies
  */
 import * as t from '@babel/types';
-import { ScriptCodemod } from './codemod';
+import { transformSync, declarePluginConfig, declarePlugin } from '../../src';
 
 /**
  * Render babel node
@@ -10,9 +10,9 @@ import { ScriptCodemod } from './codemod';
 export function renderBabelNode<T extends t.Node>(
   node: T | T[],
 ): string {
-  const result = ScriptCodemod.transformSync('a;', [
-    ScriptCodemod.declarePluginConfig(
-      ScriptCodemod.declarePlugin(() => ({
+  const result = transformSync('a;', [
+    declarePluginConfig(
+      declarePlugin(() => ({
         visitor: {
           ExpressionStatement(path) {
             Array.isArray(node)
@@ -46,7 +46,7 @@ export function snapshotError(error: Error) {
 /**
  * Try catch error and create snapshot for it
  */
-export function tryAndSnapsotError(fn: Function) {
+export function tryAndSnapshotError(fn: (...args: any[]) => any) {
   try {
     fn();
   } catch (e) {

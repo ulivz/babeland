@@ -14,8 +14,9 @@
 
 ### Auto-inferring types for the Babel Plugin
 
-```ts
+If you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this: 
 
+```ts
 module.exports = (babel) => {
   return {
     visitor: {
@@ -30,11 +31,24 @@ module.exports = (babel) => {
 };
 ```
 
+you'll find that all context objects(`babel`, `path` and `node`) have not types, and you can only move to the next step by debugging it, hherefore, this will cause a lot of trouble to coding.
+
+With `babel-shared`, you can have full type hints:
+
 ```ts
 import { defineBabelPlugin } from 'babel-shared';
 
-export function defineBabelPlugin(() => {
-
+export function declarePlugin((babel) => {
+  return {
+    visitor: {
+      VariableDeclaration(path) {
+        const { node } = path;
+        if (node.kind === "let" || node.kind === "const") {
+          node.kind = "var";
+        }
+      },
+    },
+  };
 });
 ```
 
