@@ -27,7 +27,7 @@
   - [`parse()`](#parse)
   - [`traverse()`](#traverse)
   - [`generate()`](#generate)
-- [Internal Plugins](#internal-plugins)
+- [Built-In Plugins](#built-in-plugins)
   - [babel-plugin-redirect-import](#babel-plugin-redirect-import)
     - [Redirect imported module](#redirect-imported-module)
     - [Redirect imported specifier](#redirect-imported-specifier)
@@ -159,7 +159,7 @@ pnpm i babel-shared -S # pnpm
 
 - **Description**: Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
 
-## Internal Plugins
+## Built-In Plugins
 
 ### babel-plugin-redirect-import
 

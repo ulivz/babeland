@@ -1,6 +1,6 @@
 {
   "name": "babel-shared",
-  "description": "Shared Types And Utilities for Babel - Make writing Babel plugins more fun",
+  "description": "Shared stable types and utilities for babel",
   "version": "0.0.1",
   "main": "lib/index.js",
   "module": "esm/index.js",
