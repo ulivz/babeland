@@ -34,6 +34,7 @@
     - [Redirect both import specifier and imported module](#redirect-both-import-specifier-and-imported-module)
     - [Redirect unknown imported module](#redirect-unknown-imported-module)
   - [babel-plugin-redirect-this-property](#babel-plugin-redirect-this-property)
+    - [Specifier identifiers](#specifier-identifiers)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -169,7 +170,7 @@ pnpm i babel-shared -S # pnpm
   importMap: { 
     'Foo': 'Bar'
   }
-}`
+}` // Plugin Options
 
 import { Component } from 'before';
 
@@ -185,7 +186,7 @@ import { Component } from "after";
   specifierMap: {
     Foo: 'Bar',
   },
-}`
+}` // Plugin Options
 
 import { Foo } from 'a-module';
 
@@ -204,7 +205,7 @@ import { Bar } from "a-module";
       targetImport: 'target',
     },
   },
-},`
+},` // Plugin Options
 
 import { Foo } from "any-module"; // I don't known `any-module`.
 
@@ -227,7 +228,7 @@ If you want to redirect the imported Module based on the Import Specifier, you c
       },
     },
   } 
-}`
+}` // Plugin Options
 
 import { app } from "before";
 
@@ -238,6 +239,24 @@ import { App } from "after";
 
 ### babel-plugin-redirect-this-property
 
+#### Specifier identifiers
+
+```ts
+`{
+  identifierMap: {
+    foo: 'bar',
+    baz: 'a.b'
+  }
+}`  // Plugin Options
+
+this.foo;
+this.baz;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+this.bar;
+this.a.b;
+```
 
 ## License
 
