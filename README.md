@@ -170,9 +170,28 @@ import { Component } from '@ulivz/before';
 import { Component } from "@ulivz/after";
 ```
 
+```ts
+`{ 
+  importMap: { 
+    '@ulivz/before': {
+      name: '@ulivz/after',
+      specifierMap: {
+        app: 'App',
+      },
+    },
+  } 
+}`
+
+import { app } from "@ulivz/before";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { App } from "@ulivz/before";
+```
+
 ### babel-plugin-redirect-this-property
 
 
 ## License
 
-MIT &copy; [INS-X](https://github.com/ins-x)
+MIT &copy; [ULIVZ](https://github.com/ulivz)
