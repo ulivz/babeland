@@ -54,10 +54,21 @@ export function declarePlugin((babel) => {
 
 ### Why not `@babel/helper-plugin-utils`？
 
-[@babel/helper-plugin-utils](https://babeljs.io/docs/en/babel-helper-plugin-utils) is aims to provide clear error messages if a plugin is run on a version of Babel that doesn't have the APIs that the plugin is trying to use. while you can only get its type by installing [@types/babel__helper-plugin-utils](https://www.npmjs.com/package/@types/babel__helper-plugin-utils), and this package has not been updated for three years.
+[@babel/helper-plugin-utils](https://babeljs.io/docs/en/babel-helper-plugin-utils) is aims to provide clear error messages if a plugin is run on a version of Babel that doesn't have the APIs that the plugin is trying to use. while you can only get its type by installing [@types/babel__helper-plugin-utils](https://www.npmjs.com/package/@types/babel__helper-plugin-utils), and this package has not been updated for many years.
 
 With `babel-shared`, you don't need care the type obsolescence problem.
 
+
+### I DON'T WANT to install so many `@babel/*` packages
+
+If you frequently use Babel to manipulate AST transformations, you may find that you must also install these packages as well as there types (`@types/babel__*`): 
+
+- [@babel/types](https://babeljs.io/docs/en/babel-types)
+- [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options)
+- [@babel/traverse](https://babeljs.io/docs/en/babel-traverse)
+- [@babel/generator](https://babeljs.io/docs/en/babel-generator)
+
+That's pretty tedious, so `babel-shared` brings them all together and can be used in very quickly when you need it.
 
 ## Install
 
@@ -70,8 +81,7 @@ pnpm i babel-shared -S # pnpm
 
 ### `declarePlugin`
 
-A helper function for declare a babel plugin:
-
+- **Description**: A helper function for declare a babel plugin.
 - **Type**:
   
   ```ts
@@ -97,19 +107,30 @@ A helper function for declare a babel plugin:
 
 ### `t`
 
-Wrapped exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
+- **Description**: Wrapped exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
+- **Example**:
+  
+  ```ts
+  import { t } from 'babel-shared';
+  
+  if (!t.isIdentifier(path.node.property)) {
+    return;
+  }
+  ```
 
 ### `parse()`
 
-`parse()` from [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options).
+- **Description**: `parse()` function from [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options).
+
+### `traverse()`
+
+Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
+
 
 ### `generate()`
 
 Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
 
-### `traverse()`
-
-Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
 
 ## Features
 
