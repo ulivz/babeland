@@ -198,8 +198,6 @@ import { Bar } from "a-module";
 
 #### Redirect both import specifier and imported module
 
-If you want to redirect the imported Module based on the Import Specifier, you can try it: 
-
 ```ts
 `{
   specifierMap: {
@@ -219,6 +217,8 @@ import { Foo } from "target";
 
 #### Redirect unknown imported module
 
+If you want to redirect the imported Module based on the Import Specifier, you can try it: 
+
 ```ts
 `{ 
   importMap: { 
@@ -237,8 +237,6 @@ import { app } from "before";
 
 import { App } from "after";
 ```
-
-
 
 ### babel-plugin-redirect-this-property
 

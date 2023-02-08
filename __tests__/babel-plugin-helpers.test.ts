@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-import { t, helpers } from '../src';
+import { t, getHighlightCodeString, HighlightCodeError, buildMemberExpressionByIdentifierHierarchy } from '../src';
 import { TestUtils } from './test-utils';
 
 const args = [
@@ -24,13 +24,13 @@ const foo = 'bar';
 it('getHighlightCodeString', () => {
   expect(
     TestUtils.stripAnsi(
-      helpers.getHighlightCodeString(...args),
+      getHighlightCodeString(...args),
     ),
   ).toMatchSnapshot();
 });
 
 it('HighlightCodeError', () => {
-  const error = new helpers.HighlightCodeError(...args);
+  const error = new HighlightCodeError(...args);
   expect(
     TestUtils.stripAnsi(error.message),
   ).toMatchSnapshot();
@@ -39,19 +39,19 @@ it('HighlightCodeError', () => {
 describe('buildMemberExpressionByIdentifierHierarchy', () => {
   it('string - a.b', () => {
     expect(
-      TestUtils.renderBabelNode(helpers.buildMemberExpressionByIdentifierHierarchy(['a', 'b'])),
+      TestUtils.renderBabelNode(buildMemberExpressionByIdentifierHierarchy(['a', 'b'])),
     ).toBe('a.b;');
   });
 
   it('string - a.b.c', () => {
     expect(
-      TestUtils.renderBabelNode(helpers.buildMemberExpressionByIdentifierHierarchy(['a', 'b', 'c'])),
+      TestUtils.renderBabelNode(buildMemberExpressionByIdentifierHierarchy(['a', 'b', 'c'])),
     ).toBe('a.b.c;');
   });
 
   it('identifier - a.b', () => {
     expect(
-      TestUtils.renderBabelNode(helpers.buildMemberExpressionByIdentifierHierarchy([
+      TestUtils.renderBabelNode(buildMemberExpressionByIdentifierHierarchy([
         t.identifier('a'),
         t.identifier('b'),
       ])),
@@ -60,7 +60,7 @@ describe('buildMemberExpressionByIdentifierHierarchy', () => {
 
   it('identifier - a.b', () => {
     expect(
-      TestUtils.renderBabelNode(helpers.buildMemberExpressionByIdentifierHierarchy([
+      TestUtils.renderBabelNode(buildMemberExpressionByIdentifierHierarchy([
         t.identifier('a'),
         t.identifier('b'),
         t.identifier('c'),
