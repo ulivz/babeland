@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ulivz/babel-shared/compare/v0.1.0...v0.1.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* add clean script and build fresh assets again ([66e324c](https://github.com/ulivz/babel-shared/commit/66e324c4887c6a963fb1a2b33609419c2e24eddd))
+
+
+
 # [0.1.0](https://github.com/ulivz/babel-shared/compare/b2d551df04a519cbfbee3b8f23d28d429063728e...v0.1.0) (2023-02-08)
 
 
