@@ -15,6 +15,7 @@ export function renderBabelNode<T extends t.Node>(
       declarePlugin(() => ({
         visitor: {
           ExpressionStatement(path) {
+            // eslint-disable-next-line no-unused-expressions
             Array.isArray(node)
               ? path.replaceWithMultiple(node)
               : path.replaceWith(node);
@@ -26,7 +27,7 @@ export function renderBabelNode<T extends t.Node>(
       })),
     ),
   ]);
-  return result | undefined | null;
+  return result;
 }
 
 /**

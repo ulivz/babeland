@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighlightCodeError 1`] = `
+"  1 |
+> 2 | const foo = 'bar';
+    |       ^ error
+  3 |"
+`;
+
+exports[`getHighlightCodeString 1`] = `
+"  1 |
+> 2 | const foo = 'bar';
+    |      ^ error
+  3 |"
+`;
