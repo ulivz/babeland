@@ -65,16 +65,13 @@ you'll find that all context objects(`babel`, `path` and `node`) have not types,
 With `babel-shared`, you can have full type hints:
 
 ```ts
-import { defineBabelPlugin } from 'babel-shared';
+import { declarePlugin } from 'babel-shared';
 
 export function declarePlugin((babel) => {
   return {
     visitor: {
       VariableDeclaration(path) {
-        const { node } = path;
-        if (node.kind === "let" || node.kind === "const") {
-          node.kind = "var";
-        }
+        // ...
       },
     },
   };
@@ -96,6 +93,7 @@ If you frequently use Babel to manipulate AST transformations, you may find that
 - [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options)
 - [@babel/traverse](https://babeljs.io/docs/en/babel-traverse)
 - [@babel/generator](https://babeljs.io/docs/en/babel-generator)
+- ......
 
 That's pretty tedious, so `babel-shared` brings them all together and can be used in very quickly when you need it.
 
