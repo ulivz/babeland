@@ -22,12 +22,14 @@
   - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
 - [Install](#install)
 - [API](#api)
-  - [`declarePlugin`](#declareplugin)
+  - [`declarePlugin()`](#declareplugin)
   - [`t`](#t)
   - [`parse()`](#parse)
   - [`traverse()`](#traverse)
   - [`generate()`](#generate)
-- [Internal Babel Plugins](#internal-babel-plugins)
+- [Internal Plugins](#internal-plugins)
+  - [babel-plugin-redirect-import](#babel-plugin-redirect-import)
+  - [babel-plugin-redirect-this-property](#babel-plugin-redirect-this-property)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -102,7 +104,7 @@ pnpm i babel-shared -S # pnpm
 
 ## API
 
-### `declarePlugin`
+### `declarePlugin()`
 
 - **Description**: A helper function for declare a babel plugin.
 - **Type**:
@@ -154,8 +156,21 @@ pnpm i babel-shared -S # pnpm
 
 - **Description**: Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
 
-## Internal Babel Plugins
+## Internal Plugins
 
+### babel-plugin-redirect-import
+
+```ts
+`{ importMap: { '@ulivz/before': '@ulivz/after' } }`
+
+import { Component } from '@ulivz/before';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { Component } from "@ulivz/after";
+```
+
+### babel-plugin-redirect-this-property
 
 
 ## License
