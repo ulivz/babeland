@@ -31,3 +31,11 @@ export interface PluginObj<T extends PluginOptions, U extends object = object, S
 export type BabelPlugin<T extends PluginOptions = object, U extends object = object> = (
   babel: { types: typeof t; }
 ) => PluginObj<T, U>
+
+declare module '@babel/traverse' {
+  export interface Hub {
+    file: {
+      metadata: { [key: string]: any }
+    }
+  }
+}
