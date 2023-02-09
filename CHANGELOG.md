@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ulivz/babel-shared/compare/v0.1.1...v0.1.2) (2023-02-09)
+
+
+### Features
+
+* expose original transform related api ([a0353e8](https://github.com/ulivz/babel-shared/commit/a0353e84d71df0415bae0f31cde251f5e76be3b2))
+
+
+
 ## [0.1.1](https://github.com/ulivz/babel-shared/compare/v0.1.0...v0.1.1) (2023-02-08)
 
 
