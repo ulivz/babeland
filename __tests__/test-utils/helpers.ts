@@ -10,8 +10,8 @@ import { transformSync, declarePluginConfig, declarePlugin } from '../../src';
 export function renderBabelNode<T extends t.Node>(
   node: T | T[],
 ): string {
-  const result = transformSync('a;', [
-    declarePluginConfig(
+  const result = transformSync('a;', {
+    plugins: [
       declarePlugin(() => ({
         visitor: {
           ExpressionStatement(path) {
@@ -25,9 +25,10 @@ export function renderBabelNode<T extends t.Node>(
           },
         },
       })),
-    ),
-  ]);
-  return result;
+    ],
+  });
+
+  return result.code;
 }
 
 /**

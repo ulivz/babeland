@@ -52,6 +52,7 @@
     "@types/babel-plugin-tester": "9.0.5",
     "@types/jest": "28.1.7",
     "@types/node": "18.7.6",
+    "doctoc": "2.2.0",
     "eslint": "7",
     "eslint-config-typescript-library": "0.2.4",
     "jest": "28.1.3",
@@ -62,8 +63,8 @@
     "quick-publish": "0.6.0",
     "strip-ansi": "6",
     "ts-jest": "28.0.8",
-    "typescript": "4.7.4",
-    "doctoc": "2.2.0"
+    "tsx": "^3.12.3",
+    "typescript": "4.7.4"
   },
   "files": [
     "bin",

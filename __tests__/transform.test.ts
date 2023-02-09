@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-import { transformSync, transform } from '../src/transform';
+import { transformSync, transformAsync } from '../src/transform';
 import { declarePluginConfig, declarePlugin } from '../src/helpers';
 import { t } from '../src/types';
 
@@ -22,11 +22,15 @@ const plugins = [
 ];
 
 it('transformSync', () => {
-  const output = transformSync('foo === bar;', plugins);
-  expect(output).toBe('sebmck === dork;');
+  const output = transformSync('foo === bar;', {
+    plugins,
+  });
+  expect(output.code).toBe('sebmck === dork;');
 });
 
-it('transform', async () => {
-  const output = await transform('foo === bar;', plugins);
-  expect(output).toBe('sebmck === dork;');
+it('transformAsync', async () => {
+  const output = await transformAsync('foo === bar;', {
+    plugins,
+  });
+  expect(output.code).toBe('sebmck === dork;');
 });
