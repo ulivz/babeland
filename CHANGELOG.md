@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/ulivz/babel-shared/compare/v0.1.2...v0.1.3) (2023-02-09)
+
+
+### Features
+
+* **types:** enhance `path.hub.file.metadata` ([416f7f4](https://github.com/ulivz/babel-shared/commit/416f7f4b0502f95d665c5450d5f3acbf9cd5c4a5))
+
+
+
 ## [0.1.2](https://github.com/ulivz/babel-shared/compare/v0.1.1...v0.1.2) (2023-02-09)
 
 
