@@ -2,7 +2,7 @@
  * Module dependencies
  */
 import * as t from '@babel/types';
-import { transformSync, declarePluginConfig, declarePlugin } from '../../src';
+import { transformSync, declarePlugin } from '../../src';
 
 /**
  * Render babel node
