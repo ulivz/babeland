@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/ulivz/babel-shared/compare/v0.1.3...v0.1.4) (2023-02-10)
+
+
+### Bug Fixes
+
+* `declarePluginConfig` helper should pass generic type for plugin state ([a44c859](https://github.com/ulivz/babel-shared/commit/a44c8597125e288ec628095177afa3e6d3140ef4))
+
+
+
 ## [0.1.3](https://github.com/ulivz/babel-shared/compare/v0.1.2...v0.1.3) (2023-02-09)
 
 
