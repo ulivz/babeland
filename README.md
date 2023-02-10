@@ -119,6 +119,7 @@ import { declarePlugin } from "babel-shared";
 interface Options {
   id: string;
 }
+
 interface State {
   data: object;
 }
@@ -148,6 +149,7 @@ import { transformSync, declarePlugin } from "babel-shared";
 interface Options {
   id: string;
 }
+
 interface State {
   foo: object;
 }
@@ -159,7 +161,6 @@ transformSync("source code", {
       { bar: {} },
       /* 👆🏻 wrong types but do not have diagnostics */
     ],
-
   ],
 });
 ```
@@ -179,8 +180,8 @@ interface State {
 transformSync("source code", {
   plugins: [
     declarePluginTuple<Options, State>(
-       declarePlugin<Options, State>(() => ({ visitor: {} })),
-      { bar: {} },
+      declarePlugin<Options, State>(() => ({ visitor: {} })),
+      { bar: {} }
       // 👆🏻 Argument of type '{ bar: {}; }' is not assignable to parameter of type 'Options'.
       // Object literal may only specify known properties, and 'bar' does not exist in type 'Options'.
     ),
@@ -206,7 +207,6 @@ transformSync("source code", {
   - [Declare a type-hinted babel plugin](#declare-a-type-hinted-babel-plugin)
   - [Type check for plugin options and plugin state](#type-check-for-plugin-options-and-plugin-state)
 
-
 ### `declarePluginTuple()`
 
 - **Description**: A helper function for declare a plugin tuple.
@@ -214,9 +214,9 @@ transformSync("source code", {
 
   ```ts
   function declarePluginConfig<
-    T extends PluginOptions = object, 
-    U extends object = object>
-  (plugin: BabelPlugin<T, U>, pluginOptions?: T): [BabelPlugin<T, U>, T];
+    T extends PluginOptions = object,
+    U extends object = object
+  >(plugin: BabelPlugin<T, U>, pluginOptions?: T): [BabelPlugin<T, U>, T];
   ```
 
 - **Example**: [Linkage between plugin definition and configuration](#linkage-between-plugin-definition-and-configuration)
