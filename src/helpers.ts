@@ -17,7 +17,7 @@ export function defineVisitor<T extends object = object>(visitor: Visitor<T>): V
   return visitor;
 }
 
-export function declarePluginConfig<T extends PluginOptions = object, U extends object = object>(
+export function declarePluginTuple<T extends PluginOptions = object, U extends object = object>(
   plugin: BabelPlugin<T, U>,
   pluginOptions?: T,
 ): [BabelPlugin<T, U>, T] {
