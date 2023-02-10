@@ -2,11 +2,11 @@
  * Module dependencies
  */
 import { transformSync, transformAsync } from '../src/transform';
-import { declarePluginConfig, declarePlugin } from '../src/helpers';
+import { declarePluginTuple, declarePlugin } from '../src/helpers';
 import { t } from '../src/types';
 
 const plugins = [
-  declarePluginConfig(
+  declarePluginTuple(
     declarePlugin(() => ({
       visitor: {
         BinaryExpression(path) {

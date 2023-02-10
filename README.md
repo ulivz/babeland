@@ -23,6 +23,7 @@
 - [Install](#install)
 - [Guide](#guide)
   - [Type check for plugin options and plugin state](#type-check-for-plugin-options-and-plugin-state)
+  - [Linkage between plugin definition and configuration](#linkage-between-plugin-definition-and-configuration)
 - [API](#api)
   - [`declarePlugin()`](#declareplugin)
   - [`t`](#t)
@@ -40,7 +41,6 @@
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 ## Motivation
 
@@ -83,14 +83,13 @@ export function declarePlugin((babel) => {
 
 ### Why not `@babel/helper-plugin-utils`？
 
-[@babel/helper-plugin-utils](https://babeljs.io/docs/en/babel-helper-plugin-utils) is aims to provide clear error messages if a plugin is run on a version of Babel that doesn't have the APIs that the plugin is trying to use. while you can only get its type by installing [@types/babel__helper-plugin-utils](https://www.npmjs.com/package/@types/babel__helper-plugin-utils), and this package has not been updated for many years.
+[@babel/helper-plugin-utils](https://babeljs.io/docs/en/babel-helper-plugin-utils) is aims to provide clear error messages if a plugin is run on a version of Babel that doesn't have the APIs that the plugin is trying to use. while you can only get its type by installing [@types/babel\_\_helper-plugin-utils](https://www.npmjs.com/package/@types/babel__helper-plugin-utils), and this package has not been updated for many years.
 
 With `babel-shared`, you don't need care the type obsolescence problem.
 
-
 ### I DON'T WANT to install so many `@babel/*` packages
 
-If you frequently use babel to manipulate AST transformations, you may find that you must also install these packages **as well as there types (`@types/babel__*`)**: 
+If you frequently use babel to manipulate AST transformations, you may find that you must also install these packages **as well as there types (`@types/babel__*`)**:
 
 - [@babel/types](https://babeljs.io/docs/en/babel-types)
 - [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options)
@@ -111,27 +110,81 @@ pnpm i babel-shared -S # pnpm
 
 ### Type check for plugin options and plugin state
 
-When using [declarePlugin](#declareplugin) or [declarePluginConfig](#declarepluginconfig), if you want to enable type check for plugin options and plugin state, you can pass these two generic types:
+When using [declarePlugin](#declareplugin) or [declarePluginTuple](#declareplugintuple), if you want to enable type check for plugin options and plugin state, you can pass these two generic types:
 
 ```ts
-import { declarePlugin } from 'babel-shared';
+import { declarePlugin } from "babel-shared";
 
-interface Options { id: string };
-interface State { data: object };
+interface Options {
+  id: string;
+}
+interface State {
+  data: object;
+}
 
 const plugin = declarePlugin<Options, State>((babel) => {
   return {
     visitor: {
       VariableDeclaration(path) {
         // Following expressions will have type hints and check.
-        this.opts.id
-                /*👆🏻*/
-        this.data
-            /*👆🏻*/
-      }
-    }
-  }
-})
+        this.opts.id;
+        /*👆🏻*/
+        this.data;
+        /*👆🏻*/
+      },
+    },
+  };
+});
+```
+
+### Linkage between plugin definition and configuration
+
+Suppose you're writing some transform code like this, you'll find plugin configuration does not have type check:
+
+```ts
+import { transformSync, declarePlugin } from "babel-shared";
+
+interface Options {
+  id: string;
+}
+interface State {
+  foo: object;
+}
+
+transformSync("source code", {
+  plugins: [
+    [
+      declarePlugin<Options, State>(() => ({ visitor: {} })),
+      { bar: {} },
+      /* 👆🏻 wrong types but do not have diagnostics */
+    ],
+
+  ],
+});
+```
+
+With [declarePluginTuple](#declareplugintuple), you'll have strict type check:
+
+```ts
+import { transformSync, declarePlugin, declarePluginTuple } from "babel-shared";
+
+interface Options {
+  id: string;
+}
+interface State {
+  foo: object;
+}
+
+transformSync("source code", {
+  plugins: [
+    declarePluginTuple<Options, State>(
+       declarePlugin<Options, State>(() => ({ visitor: {} })),
+      { bar: {} },
+      // 👆🏻 Argument of type '{ bar: {}; }' is not assignable to parameter of type 'Options'.
+      // Object literal may only specify known properties, and 'bar' does not exist in type 'Options'.
+    ),
+  ],
+});
 ```
 
 ## API
@@ -140,7 +193,7 @@ const plugin = declarePlugin<Options, State>((babel) => {
 
 - **Description**: A helper function for declare a babel plugin.
 - **Type**:
-  
+
   ```ts
   function declarePlugin<
     T extends PluginOptions = object,
@@ -149,10 +202,10 @@ const plugin = declarePlugin<Options, State>((babel) => {
   ```
 
 - **Example**:
-    
+
   ```ts
   import { declarePlugin } from 'babel-shared';
-  
+
   export function declarePlugin((babel) => {
     return {
       visitor: {
@@ -166,10 +219,10 @@ const plugin = declarePlugin<Options, State>((babel) => {
 
 - **Description**: exports of [@babel/types](https://babeljs.io/docs/en/babel-types).
 - **Example**:
-  
+
   ```ts
-  import { t } from 'babel-shared';
-  
+  import { t } from "babel-shared";
+
   if (!t.isIdentifier(path.node.property)) {
     return;
   }
@@ -182,7 +235,6 @@ const plugin = declarePlugin<Options, State>((babel) => {
 ### `traverse()`
 
 - **Description**: Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
-
 
 ### `generate()`
 
@@ -197,8 +249,8 @@ const plugin = declarePlugin<Options, State>((babel) => {
 - **Options**:
 
   ```ts
-  { 
-    importMap: { 
+  {
+    importMap: {
       'Foo': 'Bar'
     }
   }
@@ -219,7 +271,7 @@ const plugin = declarePlugin<Options, State>((babel) => {
 - **Options**:
 
   ```ts
-  { 
+  {
     specifierMap: {
       Foo: 'Bar',
     },
@@ -264,7 +316,7 @@ const plugin = declarePlugin<Options, State>((babel) => {
 
 #### Redirect unknown imported module
 
-If you want to redirect the imported Module based on the Import Specifier, you can try it: 
+If you want to redirect the imported Module based on the Import Specifier, you can try it:
 
 - **Options**:
 
@@ -278,8 +330,7 @@ If you want to redirect the imported Module based on the Import Specifier, you c
         },
       },
     } 
-  }` // Plugin Options
-
+  }`; // Plugin Options
   ```
 
 - **Example**:
@@ -297,7 +348,7 @@ If you want to redirect the imported Module based on the Import Specifier, you c
 #### Specifier identifiers
 
 - **Options**:
-  
+
   ```ts
   {
     identifierMap: {

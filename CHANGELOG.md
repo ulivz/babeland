@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* `declarePluginConfig` helper should pass generic type for plugin state ([a44c859](https://github.com/ulivz/babel-shared/commit/a44c8597125e288ec628095177afa3e6d3140ef4))
+* `declarePluginTuple` helper should pass generic type for plugin state ([a44c859](https://github.com/ulivz/babel-shared/commit/a44c8597125e288ec628095177afa3e6d3140ef4))
 
 
 
