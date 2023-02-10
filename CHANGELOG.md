@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/ulivz/babel-shared/compare/v0.1.4...v0.1.5) (2023-02-10)
+
+
+### Features
+
+* rename `declarePluginConfig` to `declarePluginTuple` ([171b21a](https://github.com/ulivz/babel-shared/commit/171b21a71757ed243e2441486c768b83696765a2))
+
+
+
 ## [0.1.4](https://github.com/ulivz/babel-shared/compare/v0.1.3...v0.1.4) (2023-02-10)
 
 
