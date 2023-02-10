@@ -26,6 +26,7 @@
   - [Linkage between plugin definition and configuration](#linkage-between-plugin-definition-and-configuration)
 - [API](#api)
   - [`declarePlugin()`](#declareplugin)
+  - [`declarePluginTuple()`](#declareplugintuple)
   - [`t`](#t)
   - [`parse()`](#parse)
   - [`traverse()`](#traverse)
@@ -198,22 +199,27 @@ transformSync("source code", {
   function declarePlugin<
     T extends PluginOptions = object,
     U extends object = object
-  >(fn: BabelPlugin<T, U>): typeof fn;
+  >(fn: BabelPlugin<T, U>): BabelPlugin<T, U>;
   ```
 
 - **Example**:
+  - [Declare a type-hinted babel plugin](#declare-a-type-hinted-babel-plugin)
+  - [Type check for plugin options and plugin state](#type-check-for-plugin-options-and-plugin-state)
+
+
+### `declarePluginTuple()`
+
+- **Description**: A helper function for declare a plugin tuple.
+- **Type**:
 
   ```ts
-  import { declarePlugin } from 'babel-shared';
-
-  export function declarePlugin((babel) => {
-    return {
-      visitor: {
-        // ...
-      },
-    };
-  });
+  function declarePluginConfig<
+    T extends PluginOptions = object, 
+    U extends object = object>
+  (plugin: BabelPlugin<T, U>, pluginOptions?: T): [BabelPlugin<T, U>, T];
   ```
+
+- **Example**: [Linkage between plugin definition and configuration](#linkage-between-plugin-definition-and-configuration)
 
 ### `t`
 
