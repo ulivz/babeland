@@ -30,7 +30,10 @@
     "lib": [
       "es5",
       "es6"
-    ]
+    ],
+    "paths": {
+      "babel-shared": ["src/index.ts"],
+    }
   },
   "include": [
     "src",

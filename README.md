@@ -17,10 +17,12 @@
 
 - [Table of Contents](#table-of-contents)
 - [Motivation](#motivation)
-  - [Declare a type-hinted Babel Plugin](#declare-a-type-hinted-babel-plugin)
+  - [Declare a type-hinted babel plugin](#declare-a-type-hinted-babel-plugin)
   - [Why not `@babel/helper-plugin-utils`？](#why-not-babelhelper-plugin-utils)
   - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
 - [Install](#install)
+- [Guide](#guide)
+  - [Type check for plugin options and plugin state](#type-check-for-plugin-options-and-plugin-state)
 - [API](#api)
   - [`declarePlugin()`](#declareplugin)
   - [`t`](#t)
@@ -42,7 +44,7 @@
 
 ## Motivation
 
-### Declare a type-hinted Babel Plugin
+### Declare a type-hinted babel plugin
 
 Suppose you're writing a babel plugin and want to convert all `let` and `const` declarations to `var`, you would write a plugin like this:
 
@@ -88,7 +90,7 @@ With `babel-shared`, you don't need care the type obsolescence problem.
 
 ### I DON'T WANT to install so many `@babel/*` packages
 
-If you frequently use Babel to manipulate AST transformations, you may find that you must also install these packages as well as there types (`@types/babel__*`): 
+If you frequently use babel to manipulate AST transformations, you may find that you must also install these packages **as well as there types (`@types/babel__*`)**: 
 
 - [@babel/types](https://babeljs.io/docs/en/babel-types)
 - [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options)
@@ -103,6 +105,33 @@ That's pretty tedious, so `babel-shared` brings them all together and can be use
 ```bash
 npm i babel-shared -S  # npm
 pnpm i babel-shared -S # pnpm
+```
+
+## Guide
+
+### Type check for plugin options and plugin state
+
+When using [declarePlugin](#declareplugin) or [declarePluginConfig](#declarepluginconfig), if you want to enable type check for plugin options and plugin state, you can pass these two generic types:
+
+```ts
+import { declarePlugin } from 'babel-shared';
+
+interface Options { id: string };
+interface State { data: object };
+
+const plugin = declarePlugin<Options, State>((babel) => {
+  return {
+    visitor: {
+      VariableDeclaration(path) {
+        // Following expressions will have type hints and check.
+        this.opts.id
+                /*👆🏻*/
+        this.data
+            /*👆🏻*/
+      }
+    }
+  }
+})
 ```
 
 ## API
