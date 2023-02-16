@@ -1,12 +1,4 @@
-/**
- * Module dependencies
- */
-export {
-  transformSync,
-  transformAsync,
-  transformFromAstSync,
-  transformFromAstAsync,
-} from '@babel/core';
+
 
 /**
   * FIXME: how can we make that babel does not format code

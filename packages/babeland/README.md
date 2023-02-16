@@ -12,7 +12,10 @@
 - [Table of Contents](#table-of-contents)
 - [Motivation](#motivation)
   - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
+  - [Different to `babel-shared`?](#different-to-babel-shared)
+- [Install](#install)
 - [API](#api)
+  - [](#)
   - [`parse()`](#parse)
   - [`traverse()`](#traverse)
   - [`generate()`](#generate)
@@ -32,9 +35,23 @@ If you frequently use babel to manipulate AST transformations, you may find that
 - [@babel/generator](https://babeljs.io/docs/en/babel-generator)
 - ......
 
-That's pretty tedious, so `babel-shared` brings them all together and can be used in very quickly when you need it.
+That's pretty tedious, so `babeland` brings them all together and can be used in very quickly when you need it.
+
+### Different to `babel-shared`?
+
+`babel-shared` only exports basic types and utilities, while `babeland` exports `parser`, `traverse` and `generator`.
+
+## Install
+
+
+```bash
+npm i babeland -S  # npm
+pnpm i babeland -S # pnpm
+```
 
 ## API
+
+###
 
 ### `parse()`
 

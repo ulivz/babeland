@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "jsx": "react",
     "composite": true,
-    "noEmit": false
+    "noEmit": false,
+    "outDir": ""
   },
   "exclude": ["node_modules", "lib"]
 }
