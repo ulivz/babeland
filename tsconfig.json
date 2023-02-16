@@ -5,6 +5,7 @@
     "noEmit": true,
     "paths": {
       "babel-shared": ["packages/babel-shared/src/index.ts"],
+      "babeland": ["packages/babeland/src/index.ts"],
     }
   }
 }

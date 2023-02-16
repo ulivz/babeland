@@ -46,12 +46,12 @@
 
 ## Packages
 
-| Package        | Version                                                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `babeland`     | <a href="https://npmjs.com/package/babeland"><img src="https://img.shields.io/npm/v/babeland.svg?style=flat" alt="NPM version"></a>         |
-| `babel-shared` | <a href="https://npmjs.com/package/babel-shared"><img src="https://img.shields.io/npm/v/babel-shared.svg?style=flat" alt="NPM version"></a> |
-| `babel-plugin-redirect-import` | <a href="https://npmjs.com/package/babel-plugin-redirect-import"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-import.svg?style=flat" alt="NPM version"></a> |
-| `babel-plugin-redirect-this-property` | <a href="https://npmjs.com/package/babel-plugin-redirect-this-property"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-this-property.svg?style=flat" alt="NPM version"></a> |
+| Package                               | Version                                                                                                                                                                                   | Documentation                                 |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| `babeland`                            | <a href="https://npmjs.com/package/babeland"><img src="https://img.shields.io/npm/v/babeland.svg?style=flat" alt="NPM version"></a>                                                       | [README](./packages/babeland/README.md) |
+| `babel-shared`                        | <a href="https://npmjs.com/package/babel-shared"><img src="https://img.shields.io/npm/v/babel-shared.svg?style=flat" alt="NPM version"></a>                                               | [README](./packages/babel-shared/README.md) |
+| `babel-plugin-redirect-import`        | <a href="https://npmjs.com/package/babel-plugin-redirect-import"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-import.svg?style=flat" alt="NPM version"></a>               | [README](./packages/babel-plugin-redirect-import/README.md) |
+| `babel-plugin-redirect-this-property` | <a href="https://npmjs.com/package/babel-plugin-redirect-this-property"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-this-property.svg?style=flat" alt="NPM version"></a> | [README](./packages/babel-plugin-redirect-this-property/README.md) |
 
 ## Motivation
 
@@ -178,7 +178,7 @@ transformSync("source code", {
 With [declarePluginTuple](#declareplugintuple), you'll have strict type check:
 
 ```ts
-import { transformSync, declarePlugin, declarePluginTuple } from "babel-shared";
+import { transformSync, declarePlugin, declarePluginTuple } from "babeland";
 
 interface Options {
   id: string;
