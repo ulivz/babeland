@@ -1,7 +1,7 @@
 {
   "name": "babel-shared",
   "description": "Minimal babel types and utilities",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
