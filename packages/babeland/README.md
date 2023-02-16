@@ -50,12 +50,19 @@ pnpm i babeland -S # pnpm
 ### Transform JSX
 
 ```ts
-import { transformSync, declarePluginTuple, declarePlugin } from 'babeland';
+import { transformSync, declarePluginTuple, declarePlugin } from "babeland";
 
-const pluginTuple = declarePluginTuple(
-  declarePlugin(babal => ({
-    name: 'solid',
-    inherits: require('@babel/plugin-syntax-jsx').default,
+interface PluginOptions {
+  name: string;
+}
+interface PluginState {
+  state: unknown;
+}
+
+const pluginTuple = declarePluginTuple<PluginOptions, PluginState>(
+  declarePlugin((babel) => ({
+    name: "solid",
+    inherits: require("@babel/plugin-syntax-jsx").default,
     pre() {
       this.templates = [];
     },
@@ -66,8 +73,8 @@ const pluginTuple = declarePluginTuple(
     },
   })),
   {
-    hello: 'world',
-  },
+    name: "babeland",
+  }
 );
 
 const input = "<div>Hello, {'Babeland'}</div>";
@@ -76,8 +83,8 @@ const output = transformSync(input, {
   plugins: [pluginTuple],
 });
 
-console.log('input\n', input);
-console.log('output\n', output.code);
+console.log("input\n", input);
+console.log("output\n", output.code);
 ```
 
 ## License
