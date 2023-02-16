@@ -14,11 +14,8 @@
   - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
   - [Different to `babel-shared`?](#different-to-babel-shared)
 - [Install](#install)
-- [API](#api)
-  - [](#)
-  - [`parse()`](#parse)
-  - [`traverse()`](#traverse)
-  - [`generate()`](#generate)
+- [Example](#example)
+  - [Transform JSX](#transform-jsx)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -43,28 +40,45 @@ That's pretty tedious, so `babeland` brings them all together and can be used in
 
 ## Install
 
-
 ```bash
 npm i babeland -S  # npm
 pnpm i babeland -S # pnpm
 ```
 
-## API
+## Example
 
-###
+### Transform JSX
 
-### `parse()`
+```ts
+import { transformSync, declarePluginTuple, declarePlugin } from 'babeland';
 
-- **Description**: `parse()` function from [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options).
+const pluginTuple = declarePluginTuple(
+  declarePlugin(babal => ({
+    name: 'solid',
+    inherits: require('@babel/plugin-syntax-jsx').default,
+    pre() {
+      this.templates = [];
+    },
+    visitor: {
+      JSXElement(path) {
+        // Your transform
+      },
+    },
+  })),
+  {
+    hello: 'world',
+  },
+);
 
-### `traverse()`
+const input = "<div>Hello, {'Babeland'}</div>";
 
-- **Description**: Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
+const output = transformSync(input, {
+  plugins: [pluginTuple],
+});
 
-### `generate()`
-
-- **Description**: Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
-
+console.log('input\n', input);
+console.log('output\n', output.code);
+```
 
 ## License
 
