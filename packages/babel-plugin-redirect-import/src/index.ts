@@ -1,6 +1,3 @@
-/**
- * Module dependencies
- */
 import { declarePlugin, t } from 'babel-shared';
 
 export type TargetImport = {

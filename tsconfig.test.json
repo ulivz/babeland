@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,
@@ -10,7 +10,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "__tests__",
+    "packages"
   ],
   "exclude": [
     "node_modules"

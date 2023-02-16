@@ -1,6 +1,7 @@
 {
-  "name": "babel-shared",
-  "description": "Shared stable types and utilities for babel",
+  "private": true,
+  "name": "babel-area",
+  "description": "A collection of babel helpers, types, and plugins",
   "version": "0.1.5",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -22,7 +23,7 @@
     "docs": "doctoc --title '## Table of Contents' README.md",
     "clean": "pnpm run -r clean",
     "build": "pnpm clean && pnpm run -r build",
-    "test": "pnpm run -r test",
+    "test": "jest",
     "lint": "eslint --ext js,ts,tsx packages",
     "lint:fix": "npm run lint -- --fix",
     "format": "pnpm prettier --write .",
@@ -32,7 +33,6 @@
   },
   "devDependencies": {
     "@nomadland/mono": "0.3.4",
-    "babel-plugin-tester": "10.0.0",
     "eslint": "8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-typescript-library": "0.2.4",

@@ -2,9 +2,6 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@ulivz/*": ["packages/*/src"]
-    },
     "noEmit": true
   }
 }

@@ -1,6 +1,3 @@
-/**
- * Module dependencies
- */
 import { Node } from '@babel/core';
 import {
   declarePlugin,
@@ -13,7 +10,7 @@ import {
 
 export interface IPluginOptions {
   /**
-   * A identifier map to decalare the identifiers that should be reidrected
+   * A identifier map to declare the identifiers that should be redirected
    *
    * e.g.
    *
@@ -25,7 +22,7 @@ export interface IPluginOptions {
    */
   identifierMap: Record<string, string[] | string>;
   /**
-   * Declare the identifierthat it is forbidden to use on `this`.
+   * Declare the identifier that it is forbidden to use on `this`.
    */
   dangerousIdentifiers?: string[];
 }
