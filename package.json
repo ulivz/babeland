@@ -24,6 +24,7 @@
     "clean": "pnpm run -r clean",
     "build": "pnpm clean && pnpm run -r build",
     "test": "jest",
+    "cov": "jest --coverage",
     "lint": "eslint --ext js,ts,tsx packages",
     "lint:fix": "npm run lint -- --fix",
     "format": "pnpm prettier --write .",
