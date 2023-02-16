@@ -1,11 +1,15 @@
 {
   "extends": "../../tsconfig.build.json",
-
   "compilerOptions": {
-    "outDir": "./lib"
+    "rootDir": "src",
+    "outDir": "lib"
   },
-
   "include": [
-    "src/**/*"
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../babel-shared/tsconfig.build.json"
+    }
   ]
 }

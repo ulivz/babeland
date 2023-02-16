@@ -8,9 +8,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run clean && pnpm run compile",
-    "clean": "rimraf ./lib",
-    "compile": "tsc -p tsconfig.build.json",
+    "build": "pnpm run compile",
+    "clean": "rimraf ./lib *.tsbuildinfo",
+    "compile": "tsc -b tsconfig.build.json",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {

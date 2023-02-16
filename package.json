@@ -20,9 +20,9 @@
   "scripts": {
     "bootstrap": "pnpm install --prefer-offline",
     "docs": "doctoc --title '## Table of Contents' README.md",
-    "clean": "lerna run clean",
-    "build": "lerna run build",
-    "test": "lerna run test",
+    "clean": "pnpm run -r clean",
+    "build": "pnpm clean && pnpm run -r build",
+    "test": "pnpm run -r test",
     "lint": "eslint --ext js,ts,tsx packages",
     "lint:fix": "npm run lint -- --fix",
     "format": "pnpm prettier --write .",
