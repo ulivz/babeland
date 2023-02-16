@@ -1,7 +1,7 @@
 {
   "name": "babel-shared",
   "description": "Minimal babel types and utilities",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -17,11 +17,11 @@
     "@babel/types": "7"
   },
   "devDependencies": {
-    "rimraf": "4.1.0",
-    "typescript": "4.9.4",
+    "@babel/core": "7",
     "@types/babel__core": "7",
     "@types/babel__traverse": "7",
-    "@babel/core": "7"
+    "rimraf": "4.1.0",
+    "typescript": "4.9.4"
   },
   "peerDependencies": {
     "@babel/core": "7"

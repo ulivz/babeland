@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-redirect-this-property",
   "description": "A babel plugin to redirect this property declaration",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -14,7 +14,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "babeland": "0.2.1"
+    "babeland": "0.2.2"
   },
   "devDependencies": {
     "babel-plugin-tester": "10.0.0",
