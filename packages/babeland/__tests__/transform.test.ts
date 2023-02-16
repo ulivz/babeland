@@ -1,5 +1,5 @@
 import { t, declarePluginTuple, declarePlugin } from 'babel-shared';
-import { transformSync, transformAsync } from '../src/transform';
+import { transformSync, transformAsync } from '../src';
 
 const plugins = [
   declarePluginTuple(
