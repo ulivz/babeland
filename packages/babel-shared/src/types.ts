@@ -34,4 +34,9 @@ declare module '@babel/traverse' {
       metadata: { [key: string]: any }
     }
   }
+  // path.scope.getProgramParent().data.imports
+  // @ref: https://github.com/babel/babel/blob/1945bafcf3599292f7ebeccd5c7c2635dd1cb0d5/packages/babel-traverse/src/scope/index.ts#L392
+  interface Scope {
+    data: { [key: string | symbol]: unknown };
+  }
 }
