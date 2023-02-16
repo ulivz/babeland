@@ -9,7 +9,7 @@
   ],
   "references": [
     {
-      "path": "../babel-kit/tsconfig.build.json"
+      "path": "../babeland/tsconfig.build.json"
     }
   ]
 }

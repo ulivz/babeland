@@ -1,7 +1,7 @@
-<h1 align="center">babel-shared</h1>
+<h1 align="center">babeland</h1>
 
 <p align="center">
-    Shared stable types and utilities for babel
+  A collection of babel helpers, types, and plugins
 </p>
 
 <p align="center">
@@ -16,6 +16,7 @@
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
+- [Packages](#packages)
 - [Motivation](#motivation)
   - [Declare a type-hinted babel plugin](#declare-a-type-hinted-babel-plugin)
   - [Why not `@babel/helper-plugin-utils`？](#why-not-babelhelper-plugin-utils)
@@ -43,6 +44,15 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## Packages
+
+| Package        | Version                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `babeland`     | <a href="https://npmjs.com/package/babeland"><img src="https://img.shields.io/npm/v/babeland.svg?style=flat" alt="NPM version"></a>         |
+| `babel-shared` | <a href="https://npmjs.com/package/babel-shared"><img src="https://img.shields.io/npm/v/babel-shared.svg?style=flat" alt="NPM version"></a> |
+| `babel-plugin-redirect-import` | <a href="https://npmjs.com/package/babel-plugin-redirect-import"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-import.svg?style=flat" alt="NPM version"></a> |
+| `babel-plugin-redirect-this-property` | <a href="https://npmjs.com/package/babel-plugin-redirect-this-property"><img src="https://img.shields.io/npm/v/babel-plugin-redirect-this-property.svg?style=flat" alt="NPM version"></a> |
+
 ## Motivation
 
 ### Declare a type-hinted babel plugin
@@ -69,9 +79,9 @@ you'll find that all context objects(`babel`, `path` and `node`) have not types,
 With `babel-shared`, you can have full type hints:
 
 ```ts
-import { declarePlugin } from 'babel-shared';
+import { declarePlugin } from "babel-shared";
 
-export function declarePlugin((babel) => {
+module.exports = declarePlugin((babel) => {
   return {
     visitor: {
       VariableDeclaration(path) {

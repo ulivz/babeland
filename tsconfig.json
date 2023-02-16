@@ -2,6 +2,9 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "babel-shared": ["packages/babel-shared/src/index.ts"],
+    }
   }
 }

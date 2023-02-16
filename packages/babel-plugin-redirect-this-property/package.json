@@ -13,7 +13,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "babel-kit": "0.1.5"
+    "babeland": "0.1.5"
   },
   "devDependencies": {
     "babel-plugin-tester": "10.0.0",

@@ -1,4 +1,3 @@
-import { Node } from '@babel/core';
 import {
   declarePlugin,
   t,
@@ -6,7 +5,7 @@ import {
   getHighlightCodeString,
   HighlightCodeError,
   buildMemberExpressionByIdentifierHierarchy,
-} from 'babel-kit';
+} from 'babeland';
 
 export interface IPluginOptions {
   /**
@@ -235,7 +234,7 @@ function handleDangerousIdentifiers(
  * @param path
  * @param local
  */
-function isBindingToThis<T extends Node>(path: NodePath<T>, local: string) {
+function isBindingToThis<T extends t.Node>(path: NodePath<T>, local: string) {
   const binding = path.scope.getBinding(local);
   return (
     binding

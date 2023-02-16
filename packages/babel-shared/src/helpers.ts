@@ -1,6 +1,3 @@
-/**
- * Module dependencies
- */
 import * as t from '@babel/types';
 import { BabelPlugin, PluginOptions } from './types';
 
