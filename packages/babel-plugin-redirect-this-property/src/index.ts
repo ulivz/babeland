@@ -9,7 +9,7 @@ import {
   getHighlightCodeString,
   HighlightCodeError,
   buildMemberExpressionByIdentifierHierarchy,
-} from '../exports';
+} from 'babel-kit';
 
 export interface IPluginOptions {
   /**

@@ -3,6 +3,7 @@ import generate from '@babel/generator';
 import traverse, { VisitNode, NodePath, Binding } from '@babel/traverse';
 
 export * from './transform';
+export * from './helpers';
 export * from 'babel-shared';
 export {
   parse,
