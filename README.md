@@ -4,15 +4,9 @@
   A collection of babel helpers, types, and plugins
 </p>
 
-<p align="center">
-    <a href="https://npmjs.com/package/babel-shared"><img src="https://img.shields.io/npm/v/babel-shared.svg?style=flat" alt="NPM version"></a> 
-    <a href="https://npmjs.com/package/babel-shared"><img src="https://img.shields.io/npm/dm/babel-shared.svg?style=flat" alt="NPM downloads"></a> 
-    <a href="https://circleci.com/gh/saojs/babel-shared"><img src="https://img.shields.io/circleci/project/saojs/babel-shared/master.svg?style=flat" alt="Build Status"></a> 
-</p>
-
 ## Motivation
 
-> TODO
+I expect **strict types** and **ease** of use with Babel, for details, please move to sub packages' documentation.
 
 ## Packages
 
