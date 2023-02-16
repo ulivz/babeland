@@ -1,7 +1,3 @@
-/**
- * Module dependencies
- */
-import { Node } from '@babel/core';
 import {
   declarePlugin,
   t,
@@ -9,11 +5,11 @@ import {
   getHighlightCodeString,
   HighlightCodeError,
   buildMemberExpressionByIdentifierHierarchy,
-} from '../exports';
+} from 'babeland';
 
 export interface IPluginOptions {
   /**
-   * A identifier map to decalare the identifiers that should be reidrected
+   * A identifier map to declare the identifiers that should be redirected
    *
    * e.g.
    *
@@ -25,7 +21,7 @@ export interface IPluginOptions {
    */
   identifierMap: Record<string, string[] | string>;
   /**
-   * Declare the identifierthat it is forbidden to use on `this`.
+   * Declare the identifier that it is forbidden to use on `this`.
    */
   dangerousIdentifiers?: string[];
 }
@@ -238,7 +234,7 @@ function handleDangerousIdentifiers(
  * @param path
  * @param local
  */
-function isBindingToThis<T extends Node>(path: NodePath<T>, local: string) {
+function isBindingToThis<T extends t.Node>(path: NodePath<T>, local: string) {
   const binding = path.scope.getBinding(local);
   return (
     binding

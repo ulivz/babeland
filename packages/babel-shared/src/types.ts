@@ -1,6 +1,3 @@
-/**
- * Module dependencies
- */
 import * as t from '@babel/types';
 import { Visitor } from '@babel/traverse';
 import { BabelFile, PluginOptions } from '@babel/core';

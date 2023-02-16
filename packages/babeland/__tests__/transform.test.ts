@@ -1,9 +1,5 @@
-/**
- * Module dependencies
- */
+import { t, declarePluginTuple, declarePlugin } from 'babel-shared';
 import { transformSync, transformAsync } from '../src/transform';
-import { declarePluginTuple, declarePlugin } from '../src/helpers';
-import { t } from '../src/types';
 
 const plugins = [
   declarePluginTuple(

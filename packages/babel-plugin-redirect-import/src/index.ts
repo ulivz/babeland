@@ -1,7 +1,4 @@
-/**
- * Module dependencies
- */
-import { declarePlugin, t } from '../exports';
+import { declarePlugin, t } from 'babel-shared';
 
 export type TargetImport = {
   name: string;
