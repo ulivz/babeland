@@ -1,7 +1,7 @@
 <h1 align="center">babel-shared</h1>
 
 <p align="center">
-  Shared babel types and utilities
+  Minimal babel types and utilities
 </p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
