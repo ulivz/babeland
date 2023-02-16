@@ -1,5 +1,6 @@
 {
   "name": "babel-plugin-redirect-import",
+  "description": "A babel plugin to redirect import modules or specifiers",
   "version": "0.1.5",
   "main": "lib/index",
   "types": "lib/index",

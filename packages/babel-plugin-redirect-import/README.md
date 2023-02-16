@@ -1,7 +1,7 @@
 <h1 align="center">babel-plugin-redirect-import</h1>
 
 <p align="center">
-  Shared babel types and utilities
+  A babel plugin to redirect import modules or specifiers
 </p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
