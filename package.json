@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "bootstrap": "pnpm install --prefer-offline",
-    "docs": "doctoc --title '## Table of Contents' README.md",
+    "docs": "doctoc --title '## Table of Contents' README.md packages/*/README.md",
     "clean": "pnpm run -r clean",
     "build": "pnpm clean && pnpm run -r build",
     "test": "jest",

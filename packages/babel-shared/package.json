@@ -1,5 +1,6 @@
 {
   "name": "babel-shared",
+  "description": "Shared babel types and utilities",
   "version": "0.1.5",
   "main": "lib/index",
   "types": "lib/index",
