@@ -14,14 +14,16 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@babel/core": "7",
-    "@babel/traverse": "7",
-    "@babel/types": "7",
-    "@types/babel__core": "7",
-    "@types/babel__traverse": "7"
+    "@babel/types": "7"
   },
   "devDependencies": {
     "rimraf": "4.1.0",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "@types/babel__core": "7",
+    "@types/babel__traverse": "7",
+    "@babel/core": "7"
+  },
+  "peerDependencies": {
+    "@babel/core": "7"
   }
 }

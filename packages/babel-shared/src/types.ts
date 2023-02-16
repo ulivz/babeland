@@ -1,6 +1,5 @@
 import * as t from '@babel/types';
-import { Visitor } from '@babel/traverse';
-import { BabelFile, PluginOptions } from '@babel/core';
+import { Visitor, BabelFile, PluginOptions } from '@babel/core';
 
 export { t, PluginOptions };
 
