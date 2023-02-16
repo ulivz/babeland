@@ -1,6 +1,6 @@
 {
   "name": "babeland",
-  "version": "0.1.5",
+  "version": "0.2.1",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -13,7 +13,6 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "babel-shared": "0.1.5",
     "@babel/code-frame": "7",
     "@babel/core": "7",
     "@babel/generator": "7",
@@ -24,7 +23,8 @@
     "@types/babel__core": "7",
     "@types/babel__generator": "7",
     "@types/babel__parser": "7",
-    "@types/babel__traverse": "7"
+    "@types/babel__traverse": "7",
+    "babel-shared": "0.2.1"
   },
   "devDependencies": {
     "rimraf": "4.1.0",

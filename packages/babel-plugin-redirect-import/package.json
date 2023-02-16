@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-redirect-import",
   "description": "A babel plugin to redirect import modules or specifiers",
-  "version": "0.1.5",
+  "version": "0.2.1",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -14,7 +14,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "babel-shared": "0.1.5"
+    "babel-shared": "0.2.1"
   },
   "devDependencies": {
     "babel-plugin-tester": "10.0.0",
