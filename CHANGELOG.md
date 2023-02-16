@@ -1,3 +1,16 @@
+## [0.1.5](https://github.com/ulivz/babel-shared/compare/v0.2.2...v0.1.5) (2023-02-16)
+
+
+
+## [0.2.2](https://github.com/ulivz/babel-shared/compare/v0.2.1...v0.2.2) (2023-02-16)
+
+
+### Features
+
+* **babel-shared:** move `@babel/core` to `devDependencies` and `peerDependencies` ([4f30364](https://github.com/ulivz/babel-shared/commit/4f30364d98638b914a6d4f8d7e09f63198bb91ae))
+
+
+
 ## [0.1.5](https://github.com/ulivz/babel-shared/compare/v0.2.1...v0.1.5) (2023-02-16)
 
 
