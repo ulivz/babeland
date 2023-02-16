@@ -1,0 +1,54 @@
+<h1 align="center">babeland</h1>
+
+<p align="center">
+  A collection of babel helpers, types, and plugins
+</p>
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Motivation](#motivation)
+  - [I DON'T WANT to install so many `@babel/*` packages](#i-dont-want-to-install-so-many-babel-packages)
+- [API](#api)
+  - [`parse()`](#parse)
+  - [`traverse()`](#traverse)
+  - [`generate()`](#generate)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Motivation
+
+### I DON'T WANT to install so many `@babel/*` packages
+
+If you frequently use babel to manipulate AST transformations, you may find that you must also install these packages **as well as there types (`@types/babel__*`)**:
+
+- [@babel/types](https://babeljs.io/docs/en/babel-types)
+- [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options)
+- [@babel/traverse](https://babeljs.io/docs/en/babel-traverse)
+- [@babel/generator](https://babeljs.io/docs/en/babel-generator)
+- ......
+
+That's pretty tedious, so `babel-shared` brings them all together and can be used in very quickly when you need it.
+
+## API
+
+### `parse()`
+
+- **Description**: `parse()` function from [@babel/parser](https://babeljs.io/docs/en/babel-parser#babelparserparsecode-options).
+
+### `traverse()`
+
+- **Description**: Default exported method of [babel-traverse](https://babeljs.io/docs/en/babel-traverse).
+
+### `generate()`
+
+- **Description**: Default exported method of [babel-generator](https://babeljs.io/docs/en/babel-generator).
+
+
+## License
+
+MIT &copy; [ULIVZ](https://github.com/ulivz)

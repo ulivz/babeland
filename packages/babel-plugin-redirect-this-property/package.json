@@ -1,5 +1,6 @@
 {
-  "name": "babel-plugin-redirect-import",
+  "name": "babel-plugin-redirect-this-property",
+  "description": "A babel plugin to redirect this property declaration",
   "version": "0.1.5",
   "main": "lib/index",
   "types": "lib/index",
