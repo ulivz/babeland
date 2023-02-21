@@ -6,10 +6,5 @@
   },
   "include": [
     "src"
-  ],
-  "references": [
-    {
-      "path": "../babel-shared/tsconfig.build.json"
-    }
   ]
 }
